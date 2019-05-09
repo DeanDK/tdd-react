@@ -5,17 +5,40 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
+    "lint": "eslint cypress/integration/smoke.spec.js src/**/*.js test/**/*.js",
+    "unit": "jest test/unit",
     "e2e": "cypress open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-alpha.7",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
     "cypress": "^3.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "eslint": "^5.16.0",
+    "eslint-config-codingitwrong": "^0.1.4",
+    "eslint-plugin-cypress": "^2.2.1",
+    "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-react": "^7.13.0",
+    "jest": "^24.8.0",
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.4.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setup.js"
+    ]
   }
 }
