@@ -25770,13 +25770,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var NewRestarauntForm =
 /*#__PURE__*/
@@ -25784,9 +25786,35 @@ function (_Component) {
   _inherits(NewRestarauntForm, _Component);
 
   function NewRestarauntForm() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, NewRestarauntForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(NewRestarauntForm).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(NewRestarauntForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      inputText: ''
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleTextChange", function (event) {
+      _this.setState({
+        inputText: event.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSave", function () {
+      var inputText = _this.state.inputText;
+      var onSave = _this.props.onSave;
+      onSave(inputText);
+    });
+
+    return _this;
   }
 
   _createClass(NewRestarauntForm, [{
@@ -25794,9 +25822,11 @@ function (_Component) {
     value: function render() {
       return _react.default.createElement("div", null, _react.default.createElement("input", {
         type: "text",
-        "data-test": "newRestaurantName"
+        "data-test": "newRestaurantName",
+        onChange: this.handleTextChange
       }), _react.default.createElement("button", {
-        "data-test": "saveNewRestaurantButton"
+        "data-test": "saveNewRestaurantButton",
+        onClick: this.handleSave
       }, "Save"));
     }
   }]);
@@ -25805,6 +25835,29 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = NewRestarauntForm;
+},{"react":"node_modules/react/index.js"}],"src/RestarauntList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var RestarauntList = function RestarauntList(_ref) {
+  var restaraunts = _ref.restaraunts;
+  return _react.default.createElement("ul", null, restaraunts.map(function (restarauntName) {
+    return _react.default.createElement("li", {
+      key: restarauntName
+    }, restarauntName);
+  }));
+};
+
+var _default = RestarauntList;
+exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"src/RestarauntListPage.js":[function(require,module,exports) {
 "use strict";
 
@@ -25817,11 +25870,21 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _NewRestarauntForm = _interopRequireDefault(require("./NewRestarauntForm"));
 
+var _RestarauntList = _interopRequireDefault(require("./RestarauntList"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -25831,13 +25894,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var RestarauntListPage =
 /*#__PURE__*/
@@ -25845,17 +25910,44 @@ function (_Component) {
   _inherits(RestarauntListPage, _Component);
 
   function RestarauntListPage() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, RestarauntListPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(RestarauntListPage).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(RestarauntListPage)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      restarauntNames: []
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleAddRestaurant", function (newRestaurantName) {
+      _this.setState(function (state) {
+        return {
+          restarauntNames: [newRestaurantName].concat(_toConsumableArray(state.restarauntNames))
+        };
+      });
+    });
+
+    return _this;
   }
 
   _createClass(RestarauntListPage, [{
     key: "render",
     value: function render() {
+      var restarauntNames = this.state.restarauntNames;
       return _react.default.createElement("div", null, _react.default.createElement("button", {
         "data-test": "addRestaurantButton"
-      }, "Add Restaraunt"), _react.default.createElement(_NewRestarauntForm.default, null));
+      }, "Add Restaraunt"), _react.default.createElement(_NewRestarauntForm.default, {
+        onSave: this.handleAddRestaurant
+      }), _react.default.createElement(_RestarauntList.default, {
+        restaraunts: restarauntNames
+      }));
     }
   }]);
 
@@ -25863,7 +25955,7 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = RestarauntListPage;
-},{"react":"node_modules/react/index.js","./NewRestarauntForm":"src/NewRestarauntForm.js"}],"src/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./NewRestarauntForm":"src/NewRestarauntForm.js","./RestarauntList":"src/RestarauntList.js"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

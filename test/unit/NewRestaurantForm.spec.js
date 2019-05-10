@@ -22,7 +22,7 @@ describe('NewRestarauntForm', () => {
         .simulate('click');
 
       // expect that mock function was called with specific arguments
-      expect(saveHandler).toHaveBeenCalledWith('Sushi Place');
+      expect(saveHandler).toHaveBeenCalledWith('Sushi place');
     });
   });
 });
