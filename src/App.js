@@ -1,9 +1,12 @@
 import React from 'react';
+import RestarauntListPage from './RestarauntListPage';
 
 export default class App extends React.Component {
-  state = { name: 'bar' }
-
   render() {
-    return <div className="hello">{this.state.name}</div>;
+    return (
+      <div>
+        <RestarauntListPage />
+      </div>
+    );
   }
 }
