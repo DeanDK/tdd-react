@@ -38560,12 +38560,20 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(RestarauntListPage)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      restarauntNames: []
+      restarauntNames: [],
+      showNewRestarauntForm: false
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleShowNewRestarauntForm", function () {
+      _this.setState({
+        showNewRestarauntForm: true
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleAddRestaurant", function (newRestaurantName) {
       _this.setState(function (state) {
         return {
+          showNewRestarauntForm: false,
           restarauntNames: [newRestaurantName].concat(_toConsumableArray(state.restarauntNames))
         };
       });
@@ -38577,12 +38585,15 @@ function (_Component) {
   _createClass(RestarauntListPage, [{
     key: "render",
     value: function render() {
-      var restarauntNames = this.state.restarauntNames;
+      var _this$state = this.state,
+          restarauntNames = _this$state.restarauntNames,
+          showNewRestarauntForm = _this$state.showNewRestarauntForm;
       return _react.default.createElement("div", null, _react.default.createElement(_reactMaterialize.Button, {
-        "data-test": "addRestaurantButton"
-      }, "Add Restaraunt"), _react.default.createElement(_NewRestarauntForm.default, {
+        "data-test": "addRestaurantButton",
+        onClick: this.handleShowNewRestarauntForm
+      }, "Add Restaraunt"), showNewRestarauntForm ? _react.default.createElement(_NewRestarauntForm.default, {
         onSave: this.handleAddRestaurant
-      }), _react.default.createElement(_RestarauntList.default, {
+      }) : null, _react.default.createElement(_RestarauntList.default, {
         restaraunts: restarauntNames
       }));
     }
