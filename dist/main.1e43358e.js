@@ -38458,12 +38458,18 @@ function (_Component) {
     key: "render",
     value: function render() {
       var inputText = this.state.inputText;
-      return _react.default.createElement("div", null, _react.default.createElement(_reactMaterialize.TextInput, {
+      return _react.default.createElement(_reactMaterialize.Row, null, _react.default.createElement(_reactMaterialize.TextInput, {
+        s: 12,
+        m: 8,
+        l: 10,
         label: "Restaraunt Name",
         "data-test": "newRestaurantName",
         onChange: this.handleTextChange,
         value: inputText
       }), _react.default.createElement(_reactMaterialize.Button, {
+        s: 12,
+        m: 4,
+        l: 2,
         "data-test": "saveNewRestaurantButton",
         onClick: this.handleSave
       }, "Save"));
@@ -38594,14 +38600,14 @@ function (_Component) {
       var _this$state = this.state,
           restarauntNames = _this$state.restarauntNames,
           showNewRestarauntForm = _this$state.showNewRestarauntForm;
-      return _react.default.createElement("div", null, _react.default.createElement(_reactMaterialize.Button, {
+      return _react.default.createElement("div", null, _react.default.createElement(_reactMaterialize.Row, null, _react.default.createElement(_reactMaterialize.Button, {
         "data-test": "addRestaurantButton",
         onClick: this.handleShowNewRestarauntForm
-      }, "Add Restaraunt"), showNewRestarauntForm ? _react.default.createElement(_NewRestarauntForm.default, {
+      }, "Add Restaraunt")), _react.default.createElement(_reactMaterialize.Row, null, showNewRestarauntForm ? _react.default.createElement(_NewRestarauntForm.default, {
         onSave: this.handleAddRestaurant
-      }) : null, _react.default.createElement(_RestarauntList.default, {
+      }) : null), _react.default.createElement(_reactMaterialize.Row, null, _react.default.createElement(_RestarauntList.default, {
         restaraunts: restarauntNames
-      }));
+      })));
     }
   }]);
 
@@ -38620,6 +38626,8 @@ exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _RestarauntListPage = _interopRequireDefault(require("./RestarauntListPage"));
+
+var _reactMaterialize = require("react-materialize");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38655,7 +38663,12 @@ function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement(_RestarauntListPage.default, null));
+      return _react.default.createElement("div", null, _react.default.createElement(_reactMaterialize.Row, null, _react.default.createElement(_reactMaterialize.Col, {
+        s: 12,
+        m: 10,
+        l: 8,
+        offset: "m1 l2"
+      }, _react.default.createElement(_RestarauntListPage.default, null))));
     }
   }]);
 
@@ -38663,7 +38676,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.default = App;
-},{"react":"node_modules/react/index.js","./RestarauntListPage":"src/RestarauntListPage.js"}],"src/main.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./RestarauntListPage":"src/RestarauntListPage.js","react-materialize":"node_modules/react-materialize/lib/index.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
