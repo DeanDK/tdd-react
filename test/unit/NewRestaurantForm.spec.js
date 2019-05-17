@@ -13,12 +13,12 @@ describe('NewRestarauntForm', () => {
 
       // find input and simulate change event (enter the restaraunt name)
       wrapper
-        .find('[data-test="newRestaurantName"]')
+        .find('input[data-test="newRestaurantName"]')
         .simulate('change', { target: { value: 'Sushi place' } });
 
       // find save button and simulate click event
       wrapper
-        .find('[data-test="saveNewRestaurantButton"]')
+        .find('button[data-test="saveNewRestaurantButton"]')
         .simulate('click');
 
       // expect that mock function was called with specific arguments

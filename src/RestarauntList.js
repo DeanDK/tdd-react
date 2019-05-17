@@ -1,13 +1,19 @@
 import React from 'react';
+import {
+  Collection,
+  CollectionItem,
+} from 'react-materialize';
 
 const RestarauntList = ({ restaraunts }) => (
-  <ul>
+  <Collection>
     {
       restaraunts.map(restarauntName => (
-        <li key={restarauntName}>{restarauntName}</li>
+        <CollectionItem key={restarauntName}>
+          {restarauntName}
+        </CollectionItem>
       ))
     }
-  </ul>
+  </Collection>
 );
 
 export default RestarauntList;
